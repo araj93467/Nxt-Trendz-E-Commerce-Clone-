@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nxt Trendz | Indian E-Commerce Clone</title>
+    <!-- Google Fonts: Roboto & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation (Hidden on Login) -->
+    <nav class="navbar" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="mobile-menu-btn" id="mobile-menu-btn"><i data-lucide="menu"></i></button>
+                <div class="logo" onclick="app.navigate('home')">
+                    <img src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png" alt="nxt trendz logo" class="logo-img">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#" onclick="app.navigate('home')" id="nav-home">Home</a></li>
+                <li><a href="#" onclick="app.navigate('products')" id="nav-products">Products</a></li>
+                <li><a href="#" onclick="app.navigate('cart')" id="nav-cart">Cart <span class="cart-badge" id="cart-count">0</span></a></li>
+                <li><button class="btn-logout" onclick="app.logout()">Logout</button></li>
+            </ul>
+
+            <div class="nav-mobile-icons">
+                <button onclick="app.navigate('cart')"><i data-lucide="shopping-cart"></i><span class="badge" id="cart-count-mob">0</span></button>
+                <button onclick="app.logout()"><i data-lucide="log-out"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Views -->
+    <main id="app-container">
+        <!-- Login View -->
+        <section id="login-view" class="view-section active">
+            <div class="login-container">
+                <div class="login-content">
+                    <img src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png" alt="website login" class="login-img">
+                    <form class="login-form" id="login-form">
+                        <img src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png" alt="website logo" class="form-logo">
+                        <div class="form-group">
+                            <label for="username">USERNAME</label>
+                            <input type="text" id="username" placeholder="Username" value="rahul">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">PASSWORD</label>
+                            <input type="password" id="password" placeholder="Password" value="rahul@2021">
+                        </div>
+                        <button type="submit" class="btn-primary-full">Login</button>
+                        <p id="error-msg" class="error-text"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home View -->
+        <section id="home-view" class="view-section">
+            <div class="home-container">
+                <div class="home-content">
+                    <h1>Clothes That Get YOU Noticed</h1>
+                    <p>Fashion is part of the daily air and it does not quite help that it changes all the time and all the clothes that we wear are meant to be a reflection of who we are. Our quality materials and curated designs make sure you look your best every day.</p>
+                    <button class="btn btn-primary" onclick="app.navigate('products')">Shop Now</button>
+                </div>
+                <div class="home-image">
+                    <img src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png" alt="clothes that get you noticed" class="home-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products View -->
+        <section id="products-view" class="view-section">
+            <div class="products-header">
+                <div class="search-container">
+                    <input type="text" id="product-search" placeholder="Search products...">
+                </div>
+            </div>
+            <div class="products-layout">
+                <aside class="filters-sidebar">
+                    <h3>Category</h3>
+                    <ul class="filter-list" id="category-list">
+                        <!-- JS Injection -->
+                    </ul>
+                    <h3>Rating</h3>
+                    <ul class="filter-list" id="rating-list">
+                        <!-- JS Injection -->
+                    </ul>
+                    <button class="btn-clear" onclick="app.clearFilters()">Clear Filters</button>
+                </aside>
+                
+                <div class="products-main">
+                    <div class="products-controls">
+                        <h1>All Products</h1>
+                        <div class="sort-container">
+                            <label>Sort by</label>
+                            <select id="sort-price">
+                                <option value="PRICE_HIGH">Price (High to Low)</option>
+                                <option value="PRICE_LOW">Price (Low to High)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="products-list" class="products-grid">
+                        <!-- JS Injection -->
+                    </div>
+                    <div id="no-products" class="empty-view hidden">
+                        <img src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-no-products-view-img.png" alt="no products">
+                        <h2>No Products Found</h2>
+                        <p>We could not find any products. Try other filters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Detail View -->
+        <section id="product-detail-view" class="view-section">
+            <div id="product-detail-container" class="detail-container">
+                <!-- JS Injection -->
+            </div>
+        </section>
+
+        <!-- Cart View -->
+        <section id="cart-view" class="view-section">
+            <div class="cart-container">
+                <div class="cart-header">
+                    <h1>My Cart</h1>
+                    <button class="btn-remove-all" onclick="app.clearCart()">Remove All</button>
+                </div>
+                <div id="cart-list" class="cart-items">
+                    <!-- JS Injection -->
+                </div>
+                <div id="empty-cart" class="empty-view hidden">
+                    <img src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png" alt="cart empty">
+                    <h2>Your Cart Is Empty</h2>
+                    <button class="btn btn-primary" onclick="app.navigate('products')">Shop Now</button>
+                </div>
+                <div id="cart-summary" class="cart-summary-box">
+                    <h2 id="total-price">Order Total: ₹0</h2>
+                    <p id="total-items">0 items in cart</p>
+                    <button class="btn btn-primary">Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- NotFound View -->
+        <section id="notfound-view" class="view-section">
+            <div class="empty-view">
+                <img src="https://assets.ccbp.in/frontend/react-js/not-found-blog-img.png" alt="not found">
+                <h2>Page Not Found</h2>
+                <p>We are sorry, the page you requested could not be found.</p>
+                <button class="btn btn-primary" onclick="app.navigate('home')">Go Home</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot -->
+    <div class="chatbot-trigger" onclick="app.toggleChatbot()">
+        <i data-lucide="message-square"></i>
+    </div>
+    <div class="chatbot-window" id="chatbot">
+        <div class="chat-header">
+            <h3>Support Assistant</h3>
+            <button onclick="app.toggleChatbot()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="chat-body" id="chat-messages">
+            <div class="msg bot">Hi! How can I help you today?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Ask a question...">
+            <button onclick="app.sendChat()"><i data-lucide="send"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
